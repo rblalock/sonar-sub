@@ -1,0 +1,23 @@
+{
+  "name": "sonar-sub",
+  "version": "1.0.0",
+  "description": "Sonar Battle — a browser game based on Squidi Mechanic #085",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rblalock/sonar-sub.git"
+  },
+  "keywords": [
+    "game",
+    "sonar",
+    "submarine",
+    "squidi",
+    "canvas",
+    "browser-game"
+  ],
+  "scripts": {
+    "build": "npx --yes esbuild js/main.js --bundle --outfile=dist/game.bundle.js --format=iife --platform=browser",
+    "dev": "npm run build && npx --yes serve . -p 5173",
+    "start": "npm run build && npx --yes serve . -p 5173"
+  }
+}

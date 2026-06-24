@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sonar Battle — Mechanic #085</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Catch load errors before modules/bundle run
+    window.__loadError = null;
+    window.addEventListener('error', function (e) {
+      window.__loadError = e.message || String(e.error);
+      var el = document.getElementById('load-error');
+      if (el) {
+        el.style.display = 'block';
+        el.textContent = 'Load error: ' + window.__loadError;
+      }
+    });
+    if (location.protocol === 'file:') {
+      document.addEventListener('DOMContentLoaded', function () {
+        var el = document.getElementById('load-error');
+        if (el) {
+          el.style.display = 'block';
+          el.innerHTML = 'Cannot run from file:// — start the dev server:<br><code>npm run dev</code><br>then open <a href="http://localhost:5173">http://localhost:5173</a>';
+        }
+      });
+    }
+  </script>
+</head>
+<body>
+  <div id="load-error"></div>
+
+  <div id="app">
+    <header>
+      <h1>SONAR BATTLE</h1>
+      <span class="subtitle">Mechanic #085 — Squidi.net</span>
+    </header>
+
+    <div id="game-container">
+      <canvas id="game-canvas"></canvas>
+      <div id="hud">
+        <div class="hud-panel" id="status-panel">
+          <div class="hud-row"><span class="label">HULL</span><div class="bar"><div id="hull-bar" class="bar-fill"></div></div><span id="hull-text">100%</span></div>
+          <div class="hud-row"><span class="label">DEPTH</span><span id="depth-text">0m</span></div>
+          <div class="hud-row"><span class="label">SONAR</span><span id="sonar-mode-text">BUBBLE (LARGE)</span></div>
+          <div class="hud-row"><span class="label">STATUS</span><span id="status-text">ACTIVE</span></div>
+          <div class="hud-row hidden" id="contact-row"><span class="label">CONTACT</span><span id="contact-text">—</span></div>
+        </div>
+        <div id="tip-bar"><span id="tip-text"></span></div>
+        <div id="alert-box" class="hidden">PING DETECTED</div>
+        <div id="mini-radar"></div>
+      </div>
+    </div>
+
+    <div id="controls-help">
+      <div class="control-group">
+        <strong>Movement</strong>
+        <span>W/S — rise/dive</span>
+        <span>A/D — slow thrust</span>
+      </div>
+      <div class="control-group">
+        <strong>Sonar</strong>
+        <span>Mouse — aim ping</span>
+        <span>Click / Space — active ping</span>
+        <span>1-4 — bubble: large / small / pulse / off</span>
+        <span>Q — silent running</span>
+      </div>
+      <div class="control-group">
+        <strong>Weapons</strong>
+        <span>T — torpedo (same depth)</span>
+        <span>C — depth charge (below)</span>
+        <span>M — surface missile (above)</span>
+      </div>
+      <div class="control-group">
+        <strong>Other</strong>
+        <span>R — restart</span>
+      </div>
+    </div>
+
+    <div id="overlay">
+      <div id="overlay-content">
+        <h2 id="overlay-title">SONAR BATTLE</h2>
+        <p id="overlay-message">Loading...</p>
+        <button id="start-btn">DIVE IN</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="dist/game.bundle.js"></script>
+</body>
+</html>
